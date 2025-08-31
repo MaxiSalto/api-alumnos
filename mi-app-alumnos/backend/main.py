@@ -7,6 +7,7 @@ import uvicorn
 import os
 from datetime import datetime
 from pydantic import BaseModel
+from typing import Optional
 
 app = FastAPI(
     title=settings.APP_NAME,
