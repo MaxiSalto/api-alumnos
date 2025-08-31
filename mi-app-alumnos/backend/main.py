@@ -289,11 +289,17 @@ async def get_statistics():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error al obtener estadísticas: {str(e)}")
 
-@app.get("/health")
-async def health_check():
-    return {
-        "status": "healthy",
-        "environment": settings.ENVIRONMENT,
-        "version": settings.VERSION,
-        "timestamp": datetime.now().isoformat()
-    }
+if __name__ == "__main__":
+    print("🚀 Iniciando API de Alumnos...")
+    print("📍 API disponible en: http://localhost:8000")
+    print("📍 Documentación en: http://localhost:8000/docs")
+    print("✅ CORS configurado para Next.js en puerto 3000")
+    print("="*50)
+    
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=8000,
+        reload=True,
+        log_level="info"
+    )
