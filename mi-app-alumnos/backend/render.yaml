@@ -1,0 +1,39 @@
+# render.yaml en la raíz del proyecto
+services:
+  - type: web
+    name: api-alumnos-staging
+    env: python
+    region: oregon
+    plan: free
+    branch: develop
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ENVIRONMENT
+        value: staging
+      - key: DEBUG
+        value: false
+      - key: ALLOWED_ORIGINS
+        value: https://frontend-alumnos-staging.vercel.app
+      - key: SECRET_KEY
+        generateValue: true  # Render genera automáticamente
+
+  - type: web
+    name: api-alumnos-production
+    env: python
+    region: oregon
+    plan: starter  # $7/mes para producción
+    branch: main
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: false
+      - key: ALLOWED_ORIGINS
+        value: https://frontend-alumnos.vercel.app
+      - key: SECRET_KEY
+        generateValue: true
