@@ -29,7 +29,9 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "http://127.0.0.1:3000",
-        "https://*.vercel.app",  # Permitir todos los subdominios de Vercel
+        "https://mantenimiento-frontend-alumnos.vercel.app",  # ✅ Tu dominio específico
+        "https://mantenimiento-frontend-alumnos-*.vercel.app",  # ✅ Todos los previews
+        "https://*.vercel.app",  # ✅ Permitir todos los subdominios de Vercel
         "https://api-alumnos-1-u8gk.onrender.com"
     ],
     allow_credentials=True,
